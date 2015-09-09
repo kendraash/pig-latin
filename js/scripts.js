@@ -1,6 +1,22 @@
-var pigLatin = function(word) {
-  var position = word.search(/[aeiou]/i);
+var pigLatin = function(sentence) {
+  if (sentence.search(/[ ]/) != -1) {
+    var final_sentence = [];
+    var words = sentence.split(" ");
+    var word;
+    for (var i = 0; i < words.length; i++) {
+      word = translator(words[i]);
+      final_sentence.push(word);
+    }
+    final_sentence = final_sentence.join(" ");
+  }
+  else {
+    final_sentence = translator(sentence);
+  }
+  return final_sentence;
+};
 
+var translator = function(word) {
+  var position = word.search(/[aeiou]/i);
   if (position === 0) {
     word = word.concat("ay");
   } else {
